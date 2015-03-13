@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$: << File.expand_path("../../lib/", __FILE__)
+require "yumsafe"
+
+ENV["YUMSAFE_PATH"] ||= File.expand_path("../../", __FILE__)
+
+YumSafe::App.new.run!
