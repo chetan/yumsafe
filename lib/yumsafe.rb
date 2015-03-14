@@ -1,11 +1,11 @@
 
+require "tidy_ffi"
 if RUBY_PLATFORM =~ /darwin/ then
-    # fix for scrapi on Mac OS X
-    require "tidy_ffi"
-    TidyFFI.library_path = "/usr/lib/libtidy.dylib"
+  TidyFFI.library_path = "/usr/lib/libtidy.dylib"
+elsif RUBY_PLATFORM =~ /linux/ && File.exists?("/usr/lib/libtidy.so") then
+  TidyFFI.library_path = "/usr/lib/libtidy.so"
 end
 
-require 'tidy_ffi'
 require 'httparty'
 require 'scrapi'
 require 'ostruct'
