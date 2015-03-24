@@ -13,8 +13,8 @@ module YumSafe
 
       card_scraper = Scraper.define do
         process ".y-card", :id => "@data-id"
-        process ".y-title a.y-full", :title => :text
-        process ".y-title a.y-full", :link => "@href"
+        process ".y-title div a", :title => :text
+        process ".y-title div a", :link => "@href"
         process ".y-ingredients p", :ingredients => :text
 
         result :id, :title, :link, :ingredients
