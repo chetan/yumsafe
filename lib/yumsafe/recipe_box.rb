@@ -12,17 +12,17 @@ module YumSafe
     def scrape(html)
 
       card_scraper = Scraper.define do
-        process ".y-card", :id => "@data-id"
-        process ".y-title div a", :title => :text
-        process ".y-title div a", :link => "@href"
-        process ".y-ingredients p", :ingredients => :text
+        process ".y-grid-card", :id => "@data-id"
+        process ".y-title a", :title => :text
+        process ".y-title a", :link => "@href"
+        process ".y-ingredients", :ingredients => :text
 
         result :id, :title, :link, :ingredients
       end
 
       box_scraper = Scraper.define do
         array :cards
-        process "#cards div.y-card", :cards => card_scraper
+        process "#cards div.y-grid-card", :cards => card_scraper
         result :cards
       end
 
