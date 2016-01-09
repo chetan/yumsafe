@@ -17,7 +17,17 @@ module YumSafe
     end
 
     def directions_url
-      @directions_url ||= scrape_directions_url()
+      begin
+        @directions_url ||= scrape_directions_url()
+      rescue
+      end
+
+      if @directions_url.nil? or @directions_url.empty? then
+        # fall back to yummly recipe url
+        @directions_url = "#{BASE_URL}#{@link}"
+      end
+
+      @directions_url
     end
 
 
